@@ -3,17 +3,14 @@ package com.example.application;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.example.application.EmbeddedAndroidThings.PeripheralManager;
 import com.example.application.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Used to load the 'application' library on application startup.
-    static {
-        System.loadLibrary("application");
-    }
-
+    private static final String TAG = "Application";
     private ActivityMainBinding binding;
 
     @Override
@@ -23,14 +20,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Example of a call to a native method
         TextView tv = binding.sampleText;
-        tv.setText(stringFromJNI());
+        tv.setText(TAG);
     }
-
-    /**
-     * A native method that is implemented by the 'application' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
 }
